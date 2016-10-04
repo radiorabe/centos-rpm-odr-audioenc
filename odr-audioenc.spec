@@ -19,7 +19,7 @@
 # If not, see <http://www.gnu.org/licenses/>.
 #
 # Please submit enhancements, bugfixes or comments via GitHub:
-# https://github.com/radiorabe/centos-rpm-fdk-aac-dabplus-odr
+# https://github.com/radiorabe/centos-rpm-odr-audioenc
 #
 
 
