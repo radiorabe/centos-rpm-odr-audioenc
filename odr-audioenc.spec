@@ -1,8 +1,8 @@
 #
 # spec file for package odr-audioenc and subpackage toolame-dab-odr
 #
-# Copyright (c) 2016 Radio Bern RaBe
-#                    http://www.rabe.ch
+# Copyright (c) 2016 - 2017 Radio Bern RaBe
+#                           http://www.rabe.ch
 #
 # This program is free software: you can redistribute it and/or
 # modify it under the terms of the GNU Affero General Public 
@@ -29,7 +29,7 @@
 # Names and versions of the (sub)packages
 # See https://www.redhat.com/archives/rpm-list/2000-October/msg00216.html
 %define main_name odr-audioenc
-%define main_version 2.0.0
+%define main_version 2.0.1
 
 %define toolame_dab_name toolame-dab-odr
 # Version relates to libtoolame-dab/HISTORY
@@ -164,6 +164,9 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/odr-audioenc
 
 
 %changelog
+* Fri Jan 27 2017 Christian Affolter <c.affolter@purplehaze.ch> - 2.0.1-1
+- Version bump to 2.0.1
+
 * Sat Sep 24 2016 Christian Affolter <c.affolter@purplehaze.ch> - 2.0.0-1
 - Initial release
 
