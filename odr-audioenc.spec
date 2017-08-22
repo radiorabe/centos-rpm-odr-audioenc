@@ -58,7 +58,6 @@ Source0:        https://github.com/Opendigitalradio/%{reponame}/archive/v%{main_
 
 BuildRequires:  chrpath
 BuildRequires:  fdk-aac-dabplus-odr-devel
-#BuildRequires:  libfec-odr-devel
 BuildRequires:  libtool
 BuildRequires:  zeromq-devel
 
