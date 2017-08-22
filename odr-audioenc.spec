@@ -29,11 +29,13 @@
 # Names and versions of the (sub)packages
 # See https://www.redhat.com/archives/rpm-list/2000-October/msg00216.html
 %define main_name odr-audioenc
-%define main_version 2.0.1
+%define main_version 2.1.0
+%define main_release 1%{?dist}
 
 %define toolame_dab_name toolame-dab-odr
 # Version relates to libtoolame-dab/HISTORY
 %define libtoolame_dab_version 0.2l.odr
+%define libtoolame_dab_release 2%{?dist}
 %define libtoolame_dab_license LGPLv2+
 
 # Conditional build support
@@ -46,7 +48,7 @@
 
 Name:           %{main_name}
 Version:        %{main_version}
-Release:        1%{?dist}
+Release:        %{main_release}
 Summary:        DAB and DAB+ audio encoder 
 
 License:        ASL 2.0
@@ -95,6 +97,7 @@ scheme for digital audio.
 
 %package -n     %{toolame_dab_name}
 Version:        %{libtoolame_dab_version}
+Release:        %{libtoolame_dab_release}
 Summary:        Opendigitalradio's fork of tooLAME
 License:        %{libtoolame_dab_license}
 
@@ -106,6 +109,7 @@ in form of a library to be used with the encoder for the ODR-mmbTools
 
 %package -n     %{toolame_dab_name}-devel
 Version:        %{libtoolame_dab_version}
+Release:        %{libtoolame_dab_release}
 Summary:        Development files for %{toolame_dab_name}
 License:        %{libtoolame_dab_license}
 Requires:       %{toolame_dab_name}%{?_isa} = %{libtoolame_dab_version}-%{release}
@@ -164,6 +168,10 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/odr-audioenc
 
 
 %changelog
+* Tue Aug 22 2017 Christian Affolter <c.affolter@purplehaze.ch> - 2.1.0-1
+- Version bump to 2.1.0
+- Support for independent main and sub-package release macros
+
 * Fri Jan 27 2017 Christian Affolter <c.affolter@purplehaze.ch> - 2.0.1-1
 - Version bump to 2.0.1
 
