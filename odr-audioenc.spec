@@ -83,16 +83,6 @@ The main tool is the odr-audioenc encoder, which can read audio from a file
 (raw or wav), from an ALSA source, from JACK or using libVLC, and encode to a
 file, a pipe, or to a ZeroMQ output compatible with ODR-DabMux.
 
-%package -n     %{libfdk_aac_dabplus_name}
-Version:        %{libfdk_aac_dabplus_version}
-Summary:        Opendigitalradio's fork of the Fraunhofer FDK AAC Codec Library for Android
-License:        %{libfdk_aac_dabplus_license}
-
-%description -n %{libfdk_aac_dabplus_name}
-The Fraunhofer FDK AAC Codec Library for Android ("FDK AAC Codec") is software
-that implements the MPEG Advanced Audio Coding ("AAC") encoding and decoding
-scheme for digital audio.
-
 
 %package -n     %{toolame_dab_name}
 Version:        %{libtoolame_dab_version}
@@ -170,6 +160,7 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/odr-audioenc
 * Tue Aug 22 2017 Christian Affolter <c.affolter@purplehaze.ch> - 2.1.0-1
 - Version bump to 2.1.0
 - Support for independent main and sub-package release macros
+- Removing obsolet libfdk-aac-dabplus-odr sub-package
 
 * Fri Jan 27 2017 Christian Affolter <c.affolter@purplehaze.ch> - 2.0.1-1
 - Version bump to 2.0.1
