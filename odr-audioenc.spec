@@ -30,13 +30,16 @@
 # See https://www.redhat.com/archives/rpm-list/2000-October/msg00216.html
 %define main_name odr-audioenc
 %define main_version 2.1.0
-%define main_release 1%{?dist}
+%define main_release 2%{?dist}
 
 %define toolame_dab_name toolame-dab-odr
 # Version relates to libtoolame-dab/HISTORY
 %define libtoolame_dab_version 0.2l.odr
 %define libtoolame_dab_release 2%{?dist}
 %define libtoolame_dab_license LGPLv2+
+
+%define service_user odr
+%define service_group %{service_user}
 
 # Conditional build support
 # add --without alsa option, i.e. enable alsa by default
@@ -54,11 +57,15 @@ Summary:        DAB and DAB+ audio encoder
 License:        ASL 2.0
 URL:            https://github.com/Opendigitalradio/%{reponame}
 Source0:        https://github.com/Opendigitalradio/%{reponame}/archive/v%{main_version}.tar.gz#/%{main_name}-%{main_version}.tar.gz
+Source1:        %{main_name}@.service
 
+
+%{?systemd_requires}
 
 BuildRequires:  chrpath
 BuildRequires:  fdk-aac-dabplus-odr-devel
 BuildRequires:  libtool
+BuildRequires:  systemd
 BuildRequires:  zeromq-devel
 
 %if %{with alsa}
@@ -98,7 +105,7 @@ in form of a library to be used with the encoder for the ODR-mmbTools
 
 %package -n     %{toolame_dab_name}-devel
 Version:        %{libtoolame_dab_version}
-Release:        %{libtoolame_dab_release}
+Release:        %{libtoolame_dab_release}.1
 Summary:        Development files for %{toolame_dab_name}
 License:        %{libtoolame_dab_license}
 Requires:       %{toolame_dab_name}%{?_isa} = %{libtoolame_dab_version}-%{release}
@@ -136,6 +143,18 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 # someday.
 chrpath --delete $RPM_BUILD_ROOT%{_bindir}/odr-audioenc
 
+# Install the systemd service unit
+install -d %{buildroot}/%{_unitdir}
+install -m 644 %{SOURCE1} %{buildroot}/%{_unitdir}
+
+
+%pre 
+getent group %{service_group} >/dev/null || groupadd -r %{service_group}
+getent passwd %{service_user} >/dev/null || \
+    useradd -r -g %{service_group} -G audio -d /dev/null -m -s /sbin/nologin \
+    -c "ODR tools system user account" %{service_user}
+exit 0
+
 
 %post -p /sbin/ldconfig
 
@@ -145,6 +164,7 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/odr-audioenc
 %files
 %doc ChangeLog README.md
 %{_bindir}/*
+%{_unitdir}/%{name}@.service
 
 
 %files -n %{toolame_dab_name}
@@ -157,6 +177,10 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/odr-audioenc
 
 
 %changelog
+* Thu Aug 24 2017 Christian Affolter <c.affolter@purplehaze.ch> - 2.1.0-2
+- Adding a systemd service unit template for starting odr-audioenc
+- Added a dedicated system user/group
+
 * Tue Aug 22 2017 Christian Affolter <c.affolter@purplehaze.ch> - 2.1.0-1
 - Version bump to 2.1.0
 - Support for independent main and sub-package release macros
