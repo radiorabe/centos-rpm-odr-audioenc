@@ -38,8 +38,8 @@
 %define libtoolame_dab_release 2%{?dist}
 %define libtoolame_dab_license LGPLv2+
 
-%define service_user odr
-%define service_group %{service_user}
+%define service_user odr-audioenc
+%define service_group odr
 
 # Conditional build support
 # add --without alsa option, i.e. enable alsa by default
