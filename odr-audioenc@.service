@@ -30,17 +30,18 @@ Environment="AUDIOENC_MISC_OPTS="
 #Environment="AUDIOENC_OUTPUT_OPTS=--output=/var/tmp/myfile.dabp"
 
 # Override example for PAD data via fifo
-#Environment="AUDIOENC_MISC_OPTS=--pad=6 --pad-fifo=/var/tmp/odr/padenc/%i/pad.fifo"
+#Environment="AUDIOENC_MISC_OPTS=--pad=58 --pad-fifo=/var/tmp/odr/padenc/%i/pad.fifo"
 
 Type=simple
 ExecStart=/usr/bin/odr-audioenc \
-              ${AUDIOENC_INPUT_OPTS} \
+              $AUDIOENC_INPUT_OPTS \
               --bitrate=${AUDIOENC_ENCODER_BITRATE} \
               --channels=${AUDIOENC_ENCODER_CHANNELS} \
               --rate=${AUDIOENC_ENCODER_SAMPLERATE} \
-              ${AUDIOENC_OUTPUT_OPTS} \
-              ${AUDIOENC_MISC_OPTS}
-User=odr
+              $AUDIOENC_OUTPUT_OPTS \
+              $AUDIOENC_MISC_OPTS
+
+User=odr-audioenc
 Group=odr
 
 [Install]
