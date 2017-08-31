@@ -108,7 +108,7 @@ mkdir /etc/systemd/system/odr-audioenc@example.service.d
 
 cat << "EOF" >> /etc/systemd/system/odr-audioenc@example.service.d/override.conf
 [Service]
-Environment="AUDIOENC_MISC_OPTS=--pad=6 --pad-fifo=/var/tmp/odr/padenc/%i/pad.fifo"
+Environment="AUDIOENC_MISC_OPTS=--pad=58 --pad-fifo=/var/tmp/odr/padenc/%i/pad.fifo"
 EOF
 
 # Start the odr-audioenc example instance
