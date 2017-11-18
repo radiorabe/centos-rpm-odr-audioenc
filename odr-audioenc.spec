@@ -22,6 +22,11 @@
 # https://github.com/radiorabe/centos-rpm-odr-audioenc
 #
 
+# Important note regarding version and release bumps:
+# Do not use rpmdev-bumpspec to bump this Spec file, as it can't handle
+# the *_release macros used below. Bump the version and release numbers
+# manually by adapting the main_version, main_release, libtoolame_dab_version
+# and libtoolame_dab_release macros instead.
 
 # Name of the GitHub repository
 %define reponame ODR-AudioEnc
@@ -29,13 +34,13 @@
 # Names and versions of the (sub)packages
 # See https://www.redhat.com/archives/rpm-list/2000-October/msg00216.html
 %define main_name odr-audioenc
-%define main_version 2.1.0
-%define main_release 2%{?dist}
+%define main_version 2.2.0
+%define main_release 1%{?dist}
 
 %define toolame_dab_name toolame-dab-odr
 # Version relates to libtoolame-dab/HISTORY
 %define libtoolame_dab_version 0.2l.odr
-%define libtoolame_dab_release 2%{?dist}
+%define libtoolame_dab_release 3%{?dist}
 %define libtoolame_dab_license LGPLv2+
 
 %define service_user odr-audioenc
@@ -105,7 +110,7 @@ in form of a library to be used with the encoder for the ODR-mmbTools
 
 %package -n     %{toolame_dab_name}-devel
 Version:        %{libtoolame_dab_version}
-Release:        %{libtoolame_dab_release}.1
+Release:        %{libtoolame_dab_release}
 Summary:        Development files for %{toolame_dab_name}
 License:        %{libtoolame_dab_license}
 Requires:       %{toolame_dab_name}%{?_isa} = %{libtoolame_dab_version}-%{release}
@@ -177,6 +182,9 @@ exit 0
 
 
 %changelog
+* Sat Nov 18 2017 Christian Affolter <c.affolter@purplehaze.ch> - 2.2.0-1
+- Version bump to 2.2.0
+
 * Thu Aug 24 2017 Christian Affolter <c.affolter@purplehaze.ch> - 2.1.0-2
 - Adding a systemd service unit template for starting odr-audioenc
 - Added a dedicated system user/group
