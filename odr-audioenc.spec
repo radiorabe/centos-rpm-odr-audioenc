@@ -1,7 +1,7 @@
 #
 # spec file for package odr-audioenc and subpackage toolame-dab-odr
 #
-# Copyright (c) 2016 - 2018 Radio Bern RaBe
+# Copyright (c) 2016 - 2019 Radio Bern RaBe
 #                           http://www.rabe.ch
 #
 # This program is free software: you can redistribute it and/or
