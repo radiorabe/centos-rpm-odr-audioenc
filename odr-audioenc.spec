@@ -34,13 +34,13 @@
 # Names and versions of the (sub)packages
 # See https://www.redhat.com/archives/rpm-list/2000-October/msg00216.html
 %define main_name odr-audioenc
-%define main_version 2.3.1
+%define main_version 2.4.1
 %define main_release 1%{?dist}
 
 %define toolame_dab_name toolame-dab-odr
 # Version relates to libtoolame-dab/HISTORY
 %define libtoolame_dab_version 0.2l.odr
-%define libtoolame_dab_release 4%{?dist}
+%define libtoolame_dab_release 5%{?dist}
 %define libtoolame_dab_license LGPLv2+
 
 %define service_user odr-audioenc
@@ -182,6 +182,9 @@ exit 0
 
 
 %changelog
+* Tue Dec 24 2019 Christian Affolter <c.affolter@purplehaze.ch> - 2.4.1-1
+- Version bump to 2.4.1 
+
 * Sat Oct 27 2018 Christian Affolter <c.affolter@purplehaze.ch> - 2.3.1-1
 - Version bump to 2.3.1
 
